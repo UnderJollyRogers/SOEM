@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.16.3)
+project(ethercat)
+find_package(soem)
+# find_package(soem PATHS /home/javiersanjuan/Dev/SOEM/SOEM-master/SOEM-master/install/share/cmake)
+
+if(soem_FOUND)
+    message("soem library found")
+    set(SOURCES EthercatTest.cpp)
+    add_executable(Test ${SOURCES})
+    target_compile_options(Test PUBLIC -std=c++11 -fpermissive -w -Wall )
+    target_link_libraries(Test soem)
+else()
+    message("soem library not found")
+endif()
+
